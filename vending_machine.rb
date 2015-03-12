@@ -40,10 +40,9 @@ class VendingMachine
   end
 
   def show_stock(juice_name = nil)
-    if juice_name == nil
+    if juice_name.nil?
       @stocks.keys.count.times {|i|
-        juice_name = @stocks.keys[i]
-        puts "#{juice_name}の在庫は#{@stocks[juice_name].count}つあります"
+        puts "#{@stocks.keys[i]}の在庫は#{@stocks[@stocks.keys[i]].count}つあります"
       }
     else
       puts "#{juice_name}の在庫は#{@stocks[juice_name].count}つあります"
@@ -61,9 +60,9 @@ class VendingMachine
 
   def buying(juice_name)
     if stock_check?(juice_name) && money_check?(juice_name)
-      @stocks[juice_name].pop
       sales = @stocks[juice_name][0].price
       puts "#{juice_name}を#{sales}円で購入しました！"
+      @stocks[juice_name].pop
       sales_management(sales)
       @payback = @sum
     elsif !stock_check?(juice_name)
@@ -75,12 +74,9 @@ class VendingMachine
 end
 
 vending_machine = VendingMachine.new
-vending_machine.stock_making("redbull",5)
-vending_machine.stock_making("cola",5)
+vending_machine.stock_making("redbull",2)
 vending_machine.throwing(500)
 vending_machine.buying("redbull")
-vending_machine.show_sales_amaount
-vending_machine.buying("redbull")
 vending_machine.payback
-vending_machine.show_stock("cola")
+vending_machine.show_stock("redbull")
 vending_machine.show_sales_amaount
