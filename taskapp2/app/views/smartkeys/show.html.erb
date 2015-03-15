@@ -1,0 +1,28 @@
+<h1><%= @smartkey.head %></h1>
+
+<ul>
+<% @smartkey.tasks.each do |task| %>
+<li>
+  <%= check_box_tag '', '', task.done,
+   {'data-id' => task.id, 'data-smartkey_id' => task.smartkey_id} %>
+  <%= task.title %>
+  <%= link_to "削除", smartkey_task_path(task.smartkey_id, task.id), method: :delete,
+   data:{confirm: "are you OK?"} %>
+</li>
+<% end %>
+
+<li>
+  <%= form_for [@smartkey, @smartkey.tasks.build] do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit %>
+  <% end %>
+</ul>
+
+<script>
+$(function() {
+    $("input[type=checkbox]").click(function(){
+        $.post('/smartkeys/'+$(this).data('smartkey_id')+'/tasks/'+$(this).data('id')+'/toggle');
+    });
+});
+
+</script>

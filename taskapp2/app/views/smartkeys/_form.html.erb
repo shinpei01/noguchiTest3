@@ -1,0 +1,15 @@
+<%= form_for @smartkey do |f| %>
+<p>
+  <%= f.label :フォームだよ %><br>
+  <%= f.text_field :head %>
+  <% if @smartkey.errors.any? %>
+  <%= @smartkey.errors.messages[:head][0] %>
+  <% end %>
+
+</p>
+
+<p>
+  <%= f.submit %><br>
+</p>
+
+<% end %>

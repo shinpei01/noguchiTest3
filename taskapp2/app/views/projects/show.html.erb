@@ -1,0 +1,14 @@
+<h1><%= @smartkey.title %></h1>
+
+<ul>
+<% @smartkey.tasks.each do |task| %>
+<li><%= task.title %></li>
+<% end %>
+
+<li>
+  <%= form_for [@smartkey, @smartkey.tasks.build] do |f| %>
+  <%= f.text_field :head %>
+  <%= f.submit %>
+  <% end %>
+</ul>
+<h1><%= @smartkey.title %></h1>

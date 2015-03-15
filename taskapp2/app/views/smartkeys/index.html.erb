@@ -1,0 +1,12 @@
+<h1>Smartkey復活プロジェクト</h1>
+<ul>
+  <% @smartkeys.each do |smartkey| %>
+  <li>
+    <%= link_to smartkey.head, smartkey_path(smartkey) %>(<%= smartkey.tasks.unfinished.count %>)/(<%= smartkey.tasks.count %>)
+    <%= link_to "edit", edit_smartkey_path(smartkey) %>
+    <%= link_to "削除", smartkey_path(smartkey), method: :delete, data:{confirm: "are you OK?"} %>
+  </li>
+  <% end %>
+
+  <%= link_to "新規作成", new_smartkey_path %>
+</ul>

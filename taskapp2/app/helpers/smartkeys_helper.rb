@@ -1,0 +1,2 @@
+module SmartkeysHelper
+end
